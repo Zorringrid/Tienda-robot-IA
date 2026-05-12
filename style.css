@@ -1,0 +1,135 @@
+html {
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  background-color: rgb(255, 255, 255);
+}
+.top-header {
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  z-index: 1000;
+}
+.top-header h2 {
+  padding-left: 3%;
+}
+.carrito {
+  padding-right: 3%;
+  display: flex;
+  align-items: center;
+  font-size: xx-large;
+}
+.top-header a {
+  color: black;
+  font-size: xx-large;
+  text-decoration: none;
+}
+.description-photos {
+  display: flex;
+  padding-top: 70px;
+  padding-right: 3%;
+}
+
+.title {
+  text-transform: uppercase;
+}
+.marca {
+  color: #3b82f6;
+  font-size: small;
+  border-bottom: 1px rgba(112, 128, 144, 0.505) solid;
+  padding-bottom: 3%;
+}
+.photos {
+  width: 50%;
+  height: 80vh;
+  margin: 3%;
+  display: flex;
+  gap: 30px;
+}
+.photos button {
+  height: 40vh;
+  width: 30px;
+  margin-top: 15%;
+}
+
+button {
+  background-color: #ffffff;
+  color: #3b82f6;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100px;
+  height: 45px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #3b82f6;
+  box-shadow: 0 0 0 5px #3b83f65f;
+  color: #fff;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.discount {
+  color: red;
+  padding-right: 2%;
+  font-weight: lighter;
+}
+.price {
+  font-size: xx-large;
+  display: flex;
+}
+.comes {
+  font-size: large;
+}
+.before {
+  font-size: small;
+}
+.agregar {
+  width: 100%;
+  text-transform: uppercase;
+}
+.last-footer {
+  width: 100%;
+  height: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 10px;
+}
+@media (width <= 768px) {
+  .description-photos {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .photos {
+    width: 100%;
+    height: 40vh;
+    justify-content: center;
+    gap: 10px;
+  }
+  .photos button {
+    height: 20vh;
+    width: 30px;
+    margin-top: 15%;
+  }
+  .description {
+    margin: 5%;
+  }
+}
