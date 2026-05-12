@@ -103,6 +103,7 @@ button:hover {
   font-size: small;
 }
 .agregar {
+  background-color: #bdd1f0e2;
   width: 100%;
   text-transform: uppercase;
 }
@@ -123,6 +124,7 @@ button:hover {
     height: 40vh;
     justify-content: center;
     gap: 10px;
+    margin: 3%;
   }
   .photos button {
     height: 20vh;
