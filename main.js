@@ -28,27 +28,33 @@ prev.addEventListener("click", () => {
   mostrarFoto();
 });
 
-let cantidad = 0;
+let cantidadtotal = 0;
 const botones = document.querySelectorAll(".agregar");
 const cantidadHTML = document.getElementById("cantidad");
 const comprar = document.getElementById("comprar");
-let carrito = "";
+let carrito = [];
 for (const boton of botones) {
   boton.addEventListener("click", () => {
-    if (carrito === "") {
-      cantidad++;
-      carrito = {
-        producto: boton.dataset.name,
-        precio: Number(boton.dataset.price),
-        cantidad: cantidad,
-        total: cantidad * Number(boton.dataset.price),
-      };
-    } else if (carrito.producto === boton.dataset.name) {
-      cantidad++;
-      carrito.cantidad = cantidad;
-      carrito.total = carrito.cantidad * Number(boton.dataset.price);
+    const selector = boton
+      .closest(".description")
+      .querySelector(".cantidad-selector");
+    const cantidadSeleccionada = Number(selector.value);
+    const name = boton.dataset.name;
+    const price = Number(boton.dataset.price);
+    let item = carrito.find((p) => p.producto === boton.dataset.name);
+    cantidadtotal += cantidadSeleccionada;
+    if (item) {
+      item.cantidad += cantidadSeleccionada;
+      item.total = item.cantidad * item.price;
+    } else {
+      carrito.push({
+        producto: name,
+        price: price,
+        cantidad: cantidadSeleccionada,
+        total: price * cantidadSeleccionada,
+      });
     }
     console.log(carrito);
-    cantidadHTML.textContent = cantidad;
+    cantidadHTML.textContent = cantidadtotal;
   });
 }
