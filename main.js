@@ -7,6 +7,7 @@ const addbuttons = document.querySelectorAll(".add");
 const cantidadHTML = document.getElementById("cantidad");
 const comprar = document.getElementById("comprar");
 const resume = document.querySelector(".resume");
+const subtotaldiv = document.querySelector(".subtotaldiv");
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let cantidadtotal = Number(localStorage.getItem("cantidadtotal")) || 0;
 cantidadHTML.textContent = cantidadtotal;
@@ -76,21 +77,49 @@ if (addbuttons.length > 0) {
 }
 
 if (resume) {
+  let subtotal = 0;
   for (const item of carrito) {
+    subtotal += item.total;
     resume.innerHTML += `
     <div class="resumeitem">
       <img src="${item.img}" class="foto"">
       <div class="info">
+      <div class="info">
         <h4>${item.producto}</h4>
-        <p>Precio por unidad: ${item.price}€</p>
+        <p>Robot Mascota Juguete Inteligente Interactivo: Compañero para Casa y
+          Trabajo, con Software de Última Generación</p>        
+        <p> ${item.price}€/u </p>
+        </div>
+        <p class="stock">En stock </p>
+        <p class="delivery" >Entrega <strong>GRATIS</strong> en 5 dias </p>
         <div class="moreorless"> 
           <button class ="more" data-type="less" data-name="${item.producto}">-</button>       
           <p>${item.cantidad}</p>
           <button class ="more" data-type="more" data-name="${item.producto}" >+</button>
         </div>
-        <p>Total: ${item.total}€</p>
-        <button class ="more" data-type="delate" data-name="${item.producto}">Eliminar</button>
+        <p><strong>Total:</strong> ${item.total}€</p>
+        <div class="delatebuy">
+          <button class ="more" data-type="delate" data-name="${item.producto}">Eliminar</button>
+          <button class ="more" data-type="buy" data-name="${item.producto}">Comprar</button>
+          </div>
+        </div>
+    </div>
+  `;
+  }
+  if (subtotal != 0) {
+    subtotaldiv.innerHTML += `
+    <div class="subtotal">
+      <h3>resumen</h3>
+      <div> 
+        <button class="more" data-type="buyall">Comprar todo</button>
+        <h4>Subtotal: ${subtotal} €</h4>
       </div>
+    </div>
+  `;
+  } else {
+    subtotaldiv.innerHTML += `
+    <div class="subtotal">
+      <h3>Aun no tienes ninguna compra</h3>
     </div>
   `;
   }
@@ -107,14 +136,27 @@ if (morebuttons.length > 0) {
           item.total = item.cantidad * item.price;
           cantidadtotal++;
         } else if (type === "less") {
-          item.cantidad--;
-          item.total = item.cantidad * item.price;
-          cantidadtotal--;
+          if (item.cantidad === 1) {
+            carrito = carrito.filter((p) => p.producto !== item.producto);
+            cantidadtotal -= item.cantidad;
+          } else {
+            item.cantidad--;
+            item.total = item.cantidad * item.price;
+            cantidadtotal--;
+          }
         } else if (type === "delate") {
           carrito = carrito.filter((p) => p.producto !== item.producto);
-
           cantidadtotal -= item.cantidad;
+        } else if (type === "buy") {
+          carrito = carrito.filter((p) => p.producto !== item.producto);
+          cantidadtotal -= item.cantidad;
+          window.alert("Compra realizada con exito ");
         }
+      }
+      if (type === "buyall") {
+        carrito = [];
+        cantidadtotal = 0;
+        window.alert("Compra realizada con exito ");
       }
       localStorage.setItem("carrito", JSON.stringify(carrito));
       localStorage.setItem("cantidadtotal", cantidadtotal);
