@@ -26,7 +26,7 @@ body {
 .top-header h2 {
   padding-left: 3%;
 }
-.carrito {
+.shoppingCarts {
   padding-right: 3%;
   display: flex;
   align-items: center;
@@ -37,6 +37,11 @@ body {
   font-size: xx-large;
   text-decoration: none;
 }
+.eilik {
+  padding-top: 70px;
+  padding-right: 3%;
+}
+
 .description-photos {
   display: flex;
   padding-top: 70px;
@@ -102,7 +107,7 @@ button:hover {
 .before {
   font-size: small;
 }
-.agregar {
+.add {
   background-color: #bdd1f0e2;
   width: 100%;
   text-transform: uppercase;
@@ -114,6 +119,37 @@ button:hover {
   text-align: center;
   font-size: 10px;
 }
+.shopping {
+  padding-top: 80px;
+  padding-left: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: larger;
+  text-transform: uppercase;
+}
+.resume {
+  width: 100%;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.resumeitem {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.foto {
+  width: 15%;
+  height: auto;
+}
+.moreorless {
+  display: flex;
+}
+
 @media (width <= 768px) {
   .description-photos {
     flex-direction: column;
