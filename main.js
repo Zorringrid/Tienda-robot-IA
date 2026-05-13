@@ -29,25 +29,26 @@ prev.addEventListener("click", () => {
 });
 
 let cantidad = 0;
-let total = 0;
-
 const botones = document.querySelectorAll(".agregar");
 const cantidadHTML = document.getElementById("cantidad");
-const totalHTML = document.getElementById("total");
 const comprar = document.getElementById("comprar");
-
-botones.forEach((boton) => {
+let carrito = "";
+for (const boton of botones) {
   boton.addEventListener("click", () => {
-    const precio = Number(boton.dataset.precio);
-
-    cantidad++;
-    total += precio;
-
+    if (carrito === "") {
+      cantidad++;
+      carrito = {
+        producto: boton.dataset.name,
+        precio: Number(boton.dataset.price),
+        cantidad: cantidad,
+        total: cantidad * Number(boton.dataset.price),
+      };
+    } else if (carrito.producto === boton.dataset.name) {
+      cantidad++;
+      carrito.cantidad = cantidad;
+      carrito.total = carrito.cantidad * Number(boton.dataset.price);
+    }
+    console.log(carrito);
     cantidadHTML.textContent = cantidad;
-    totalHTML.textContent = "Total: " + total + "€";
   });
-});
-
-comprar.addEventListener("click", () => {
-  alert("Compra ficticia realizada. No se ha hecho ningún pago real.");
-});
+}
