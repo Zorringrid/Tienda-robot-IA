@@ -137,6 +137,7 @@ button:hover {
   flex-direction: column;
   gap: 30px;
   margin: 2%;
+  padding-top: 10%;
 }
 .resumeitem {
   display: flex;
@@ -211,6 +212,10 @@ button:hover {
   margin-right: 3%;
   gap: 10px;
 }
+
+.subtotal button {
+  background-color: #bdd1f0e2;
+}
 @media (width <= 768px) {
   .description-photos {
     flex-direction: column;
@@ -259,5 +264,12 @@ button:hover {
   }
   .subtotal {
     font-size: small;
+  }
+  .subtotal button {
+    background-color: #122c54e2;
+    text-transform: uppercase;
+    height: 30px;
+
+    font-size: x-small;
   }
 }

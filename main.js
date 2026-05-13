@@ -112,7 +112,7 @@ if (resume) {
       <h3>resumen</h3>
       <div> 
         <button class="more" data-type="buyall">Comprar todo</button>
-        <h4>Subtotal: ${subtotal} €</h4>
+        <h4>Total: ${subtotal} €</h4>
       </div>
     </div>
   `;
