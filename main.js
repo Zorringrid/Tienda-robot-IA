@@ -11,37 +11,58 @@ const subtotaldiv = document.querySelector(".subtotaldiv");
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let cantidadtotal = Number(localStorage.getItem("cantidadtotal")) || 0;
 cantidadHTML.textContent = cantidadtotal;
-
+const infoButtons = document.querySelectorAll(".botoninformation");
 const imagenes = {
   Eilik: "img/eilik1.jpg",
-  "Eilik azul": "img/eilik1.jpg",
-  // "Robot X": "img/robotx.jpg",
+  XtremBots: "img/XtremBots1.jpg",
+  Miko: "img/Miko1.jpg",
 };
 
-const fotos = [
-  "img/eilik1.jpg",
-  "img/eilik2.jpg",
-  "img/eilik3.jpg",
-  "img/eilik4.jpg",
-  "img/eilik5.jpg",
-  "img/eilik6.jpg",
-];
-let indice = 0;
-
-function mostrarFoto() {
-  imagen.src = fotos[indice];
+const fotos = {
+  Eilik: [
+    "img/eilik1.jpg",
+    "img/eilik2.jpg",
+    "img/eilik3.jpg",
+    "img/eilik4.jpg",
+    "img/eilik5.jpg",
+    "img/eilik6.jpg",
+  ],
+  XtremBots: [
+    "img/XtremBots1.jpg",
+    "img/XtremBots2.jpg",
+    "img/XtremBots3.jpg",
+    "img/XtremBots4.jpg",
+    "img/XtremBots5.jpg",
+    "img/XtremBots6.jpg",
+  ],
+  Miko: [
+    "img/Miko1.jpg",
+    "img/Miko2.jpg",
+    "img/Miko3.jpg",
+    "img/Miko4.jpg",
+    "img/Miko5.jpg",
+    "img/Miko6.jpg",
+  ],
+};
+function mostrarFoto(name) {
+  imagen.src = fotos[name][index];
 }
-if (imagen && prev && next) {
+let index = 0;
+
+if (prev && next && imagen) {
   next.addEventListener("click", () => {
-    indice++;
-    if (indice >= fotos.length) indice = 0;
-    mostrarFoto();
+    const name = next.dataset.name;
+    console.log(name);
+    index++;
+    if (index >= fotos[name].length) index = 0;
+    mostrarFoto(name);
   });
 
   prev.addEventListener("click", () => {
-    indice--;
-    if (indice < 0) indice = fotos.length - 1;
-    mostrarFoto();
+    const name = prev.dataset.name;
+    index--;
+    if (index < 0) index = fotos[name].length - 1;
+    mostrarFoto(name);
   });
 }
 
@@ -53,6 +74,8 @@ if (addbuttons.length > 0) {
         .querySelector(".quantityselector");
       const cantidadSeleccionada = Number(selector.value);
       const name = boton.dataset.name;
+      const description = boton.dataset.description;
+      const days = boton.dataset.days;
       const price = Number(boton.dataset.price);
       let item = carrito.find((p) => p.producto === boton.dataset.name);
       cantidadtotal += cantidadSeleccionada;
@@ -64,6 +87,8 @@ if (addbuttons.length > 0) {
           img: imagenes[name],
           producto: name,
           price: price,
+          description: description,
+          days: days,
           cantidad: cantidadSeleccionada,
           total: price * cantidadSeleccionada,
         });
@@ -86,12 +111,12 @@ if (resume) {
       <div class="info">
       <div class="info">
         <h4>${item.producto}</h4>
-        <p>Robot Mascota Juguete Inteligente Interactivo: Compañero para Casa y
-          Trabajo, con Software de Última Generación</p>        
+        <p>${item.description}
+    
         <p> ${item.price}€/u </p>
         </div>
         <p class="stock">En stock </p>
-        <p class="delivery" >Entrega <strong>GRATIS</strong> en 5 dias </p>
+        <p class="delivery" >Entrega <strong>GRATIS</strong> ${item.days} </p>
         <div class="moreorless"> 
           <button class ="more" data-type="less" data-name="${item.producto}">-</button>       
           <p>${item.cantidad}</p>
@@ -166,3 +191,10 @@ if (morebuttons.length > 0) {
     });
   }
 }
+infoButtons.forEach((boton) => {
+  boton.addEventListener("click", () => {
+    const lista = boton.parentElement.nextElementSibling; // el UL correspondiente
+
+    lista.classList.toggle("visible"); // alterna mostrar/ocultar
+  });
+});

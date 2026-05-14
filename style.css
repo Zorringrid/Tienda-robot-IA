@@ -8,23 +8,24 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
-  /* font-weight: <weight>; */
   font-style: normal;
   font-variation-settings: "wdth" 100;
   background-color: rgb(255, 255, 255);
 }
 .top-header {
-  position: fixed;
   height: 70px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: black;
-  z-index: 1000;
+  background-color: #7a89a1;
+}
+.linkindice {
+  padding-left: 3%;
 }
 .top-header h2 {
-  padding-left: 3%;
+  font-size: x-large;
 }
 .shoppingCarts {
   padding-right: 3%;
@@ -37,15 +38,59 @@ body {
   font-size: xx-large;
   text-decoration: none;
 }
-.eilik {
-  padding-top: 70px;
-  padding-right: 3%;
+.top-header a:hover {
+  color: white;
+}
+.first {
+  margin-top: 4%;
+  margin-left: 4%;
+}
+.targets {
+  padding-top: 80px;
+  padding: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+.targetitem {
+  width: 20%;
+  padding: 3%;
+  background-color: #e6e6e6;
+}
+.targetitem a {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.targetitem:hover {
+  background-color: #7a89a1;
+  color: white;
+}
+.targetitem img {
+  width: 50%;
+  height: 90%;
 }
 
+.targets a {
+  text-decoration: none;
+  color: black;
+}
 .description-photos {
   display: flex;
   padding-top: 70px;
   padding-right: 3%;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
 }
 
 .title {
@@ -86,12 +131,7 @@ button:hover {
   box-shadow: 0 0 0 5px #3b83f65f;
   color: #fff;
 }
-.description {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-}
+
 .discount {
   color: red;
   padding-right: 2%;
@@ -112,13 +152,59 @@ button:hover {
   width: 100%;
   text-transform: uppercase;
 }
-.last-footer {
-  width: 100%;
-  height: 30px;
-  padding-top: 15px;
-  text-align: center;
-  font-size: 10px;
+.information {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+  gap: 30px;
 }
+.aboutproduct {
+  width: 50%;
+}
+.aboutproduct li {
+  font-size: x-large;
+  margin-top: 2%;
+  text-align: justify;
+  list-style: none;
+}
+.listdetails {
+  width: 45%;
+}
+.infotitle {
+  margin-bottom: 3%;
+}
+.detailsproduct {
+  width: 100%;
+  padding: 3%;
+  border-top: 2px #c8c8c8 solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.botoninformation {
+  color: black;
+  font-size: xx-large;
+  background-color: none;
+}
+.botoninformation:hover {
+  color: black;
+  font-size: xx-large;
+  background-color: white;
+}
+.listdetails li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+  border-top: 2px #c8c8c8 solid;
+}
+.moreiformation {
+  display: none;
+}
+.moreiformation.visible {
+  display: block;
+}
+
 .shopping {
   display: flex;
   flex-direction: column;
@@ -137,7 +223,6 @@ button:hover {
   flex-direction: column;
   gap: 30px;
   margin: 2%;
-  padding-top: 10%;
 }
 .resumeitem {
   display: flex;
@@ -184,26 +269,23 @@ button:hover {
 .moreorless button:hover {
   color: #3b82f6;
   background-color: #f4f4f4;
+  box-shadow: none;
 }
 .delatebuy {
   display: flex;
   gap: 10px;
 }
 .subtotaldiv {
-  padding-top: 50px;
   width: 100%;
 }
 .subtotal {
-  position: fixed;
   height: 6%;
-  margin-top: 2%;
   padding: 1%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: black;
-  z-index: 1000;
   background-color: #a5bce2;
 }
 .subtotal div {
@@ -216,7 +298,21 @@ button:hover {
 .subtotal button {
   background-color: #bdd1f0e2;
 }
+
+.last-footer {
+  width: 100%;
+  height: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 10px;
+}
 @media (width <= 768px) {
+  .targets {
+    flex-direction: column;
+  }
+  .targetitem {
+    width: 90%;
+  }
   .description-photos {
     flex-direction: column;
     gap: 10px;
@@ -271,5 +367,17 @@ button:hover {
     height: 30px;
 
     font-size: x-small;
+  }
+  .information {
+    flex-direction: column;
+    align-items: center;
+    font-size: medium;
+  }
+  .aboutproduct {
+    width: 90%;
+  }
+  .listdetails {
+    width: 90%;
+    margin-right: 5%;
   }
 }
